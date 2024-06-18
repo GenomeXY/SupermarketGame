@@ -97,12 +97,6 @@ public class FallingObjectsSpawner : MonoBehaviour
             TotalScore++;
             Debug.Log($"Collected a selected product! Total Score: {TotalScore}, {collectedProduct.ProductTypes} Amount left: {collectedProduct.Amount}");
 
-            // Если количество (Amount) достигло нуля, удаляем продукт из списка
-            if (collectedProduct.Amount <= 0)
-            {
-                selectedProducts.Remove(collectedProduct);
-                Debug.Log($"Product {collectedProduct.ProductTypes} has been depleted and removed from selected products.");
-            }
         }
         else
         {
