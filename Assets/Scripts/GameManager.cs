@@ -12,7 +12,9 @@ public class GameManager : MonoBehaviour
     [SerializeField] private FallingObjectsSpawner _fallingObjectsSpawner;
     private void Awake()
     {
-        _fallingObjectsSpawner.Select3RandomProducts();
+        _fallingObjectsSpawner.InitializeDropChances(); // Инициализируем вероятности выпадения
+        _fallingObjectsSpawner.Select3RandomProducts(); // Выбираем 3 случайных продукта для сбора
+
         _uiCanvas.SetActive(false);
         TapHandler.SetActive(false);       // деактивируем обработчик нажатий
         LootSpawner.SetActive(false);      // деактивируем лут-спаунер

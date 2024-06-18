@@ -24,6 +24,9 @@ public abstract class Products : ScriptableObject
     public GameObject Prefab;
     public Sprite Sprite;
     public int Amount;
+    public float DropChance; // Вероятность выпадения в процентах
 
     public abstract void Initialize();
+
+    public abstract void SetDropChance(float chance);
 }

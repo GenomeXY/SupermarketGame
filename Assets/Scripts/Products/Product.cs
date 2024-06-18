@@ -9,4 +9,9 @@ public class Product : Products
     {
         Amount = Random.Range(1, 4); // Устанавливаем случайное значение от 1 до 4
     }
+
+    public override void SetDropChance(float chance)
+    {
+        DropChance = chance;
+    }
 }

@@ -3,7 +3,6 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
-
 public class FallingObjectsSpawner : MonoBehaviour
 {
     public static Action<Products> OnProductAmountChanged;
@@ -12,19 +11,23 @@ public class FallingObjectsSpawner : MonoBehaviour
     [SerializeField] public List<Products> selectedProducts = new List<Products>(); // Список продуктов для сбора
     [SerializeField] private float _spawnInterval = 2.0f; // Интервал между спавнами предметов
     [SerializeField] private float _spawnRange = 2.5f; // Диапазон, в котором предметы могут появляться (соответствует диапазону передвижения игрока)
+    [SerializeField] private float defaultDropChance = 1.0f; // Базовая вероятность выпадения для обычных продуктов
+    [SerializeField] private float selectedDropChance = 5.0f; // Вероятность выпадения для выбранных продуктов
 
     private float _timeSinceLastSpawn = 0.0f;
     public int TotalScore = 0;
 
     private void Start()
     {
-        //selectedProducts.Clear();
-        FallingObject.OnCollected += HandleProductCollected; // Подписываемся на событие сбора        
+        // Подписываемся на событие сбора
+        FallingObject.OnCollected += HandleProductCollected;
     }
+
     private void OnDestroy()
     {
         FallingObject.OnCollected -= HandleProductCollected; // Отписываемся от события при разрушении
     }
+
     private void Update()
     {
         _timeSinceLastSpawn += Time.deltaTime;
@@ -47,9 +50,9 @@ public class FallingObjectsSpawner : MonoBehaviour
         float randomX = UnityEngine.Random.Range(-_spawnRange, _spawnRange);
         Vector3 spawnPosition = new Vector3(randomX, transform.position.y, transform.position.z);
 
-        // Выбираем случайный префаб из списка
-        int randomIndex = UnityEngine.Random.Range(0, _fallingProducts.Count);
-        GameObject selectedPrefab = _fallingProducts[randomIndex].Prefab;
+        // Выбираем случайный префаб из списка с учетом вероятности выпадения
+        Products selectedProduct = GetRandomProductByChance(_fallingProducts);
+        GameObject selectedPrefab = selectedProduct.Prefab;
 
         // Создаем падающий объект 
         GameObject fallingObject = Instantiate(selectedPrefab, spawnPosition, Quaternion.identity);
@@ -66,17 +69,51 @@ public class FallingObjectsSpawner : MonoBehaviour
 
         // Создаем временный список для работы с случайным выбором
         List<Products> tempFallingProducts = new List<Products>(_fallingProducts);
-        //selectedProducts.Clear();
+        selectedProducts.Clear();
 
-        // Выбираем 3 случайных продукта
+        // Выбираем 3 случайных продукта с учетом вероятности выпадения
         for (int i = 0; i < 3; i++)
         {
-            int randomIndex = UnityEngine.Random.Range(0, tempFallingProducts.Count);
-            Products selectedProduct = tempFallingProducts[randomIndex];
+            Products selectedProduct = GetRandomProductByChance(tempFallingProducts);
             selectedProducts.Add(selectedProduct);
             selectedProduct.Initialize();
-            tempFallingProducts.RemoveAt(randomIndex); // Удаляем выбранный продукт из временного списка
+            selectedProduct.SetDropChance(selectedDropChance); // Устанавливаем повышенный шанс выпадения
+            tempFallingProducts.Remove(selectedProduct); // Удаляем выбранный продукт из временного списка
         }
+
+        // Остальным продуктам устанавливаем базовый шанс выпадения
+        foreach (var product in tempFallingProducts)
+        {
+            product.SetDropChance(defaultDropChance);
+        }
+    }
+
+    public void InitializeDropChances()
+    {
+        // Устанавливаем базовый шанс выпадения для всех продуктов
+        foreach (var product in _fallingProducts)
+        {
+            product.Initialize(); // Убедитесь, что продукты инициализированы
+            product.SetDropChance(defaultDropChance);
+        }
+    }
+
+    // Метод для выбора продукта с учетом вероятности выпадения
+    private Products GetRandomProductByChance(List<Products> products)
+    {
+        float totalChance = products.Sum(p => p.DropChance);
+        float randomPoint = UnityEngine.Random.value * totalChance;
+
+        float cumulativeChance = 0f;
+        foreach (var product in products)
+        {
+            cumulativeChance += product.DropChance;
+            if (randomPoint <= cumulativeChance)
+            {
+                return product;
+            }
+        }
+        return products[products.Count - 1]; // На случай, если что-то пошло не так, возвращаем последний продукт
     }
 
     private void HandleProductCollected(ProductsTypes productType)
@@ -93,6 +130,12 @@ public class FallingObjectsSpawner : MonoBehaviour
             // Вызываем событие об изменении количества продукта
             OnProductAmountChanged?.Invoke(collectedProduct);
 
+            if (collectedProduct.Amount <= 0)
+            {
+                // Удаляем продукт из списка падающих продуктов
+                _fallingProducts.Remove(collectedProduct);
+                Debug.Log($"Product {collectedProduct.ProductTypes} has been removed from falling products.");
+            }
             // Увеличиваем общий счет
             TotalScore++;
             Debug.Log($"Collected a selected product! Total Score: {TotalScore}, {collectedProduct.ProductTypes} Amount left: {collectedProduct.Amount}");
