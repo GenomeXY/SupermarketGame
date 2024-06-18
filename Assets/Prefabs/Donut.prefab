@@ -58,7 +58,7 @@ Transform:
   m_GameObject: {fileID: 2454107952167247995}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.487, z: 0}
+  m_LocalPosition: {x: 0, y: -0.002, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -178,6 +178,7 @@ MonoBehaviour:
     type: 3}
   _dieEffect: {fileID: 7328773732955115835, guid: 0c3ad027185f0de488b4b767cfb56aee,
     type: 3}
+  _product: {fileID: 11400000, guid: 3979408e3fa09b94890f6005f34d8d4a, type: 2}
   _productTypes: 5
 --- !u!1001 &4595551330293234641
 PrefabInstance:

@@ -12,10 +12,19 @@ public class FallingObject : MonoBehaviour
     [SerializeField] private GameObject _collectEffect;
     [SerializeField] private GameObject _dieEffect;
 
+    [SerializeField] private Product _product; // Ссылка на ScriptableObject
+
     [SerializeField] private ProductsTypes _productTypes;
     private void Start()
     {
-        _productTypes = GetComponent<ProductsTypes>();
+        if (_product != null)
+        {
+            _productTypes = _product.ProductTypes;
+        }
+        else
+        {
+            Debug.LogError("Продукт не назначен на объект.");
+        }
     }
     private void Update()
     {

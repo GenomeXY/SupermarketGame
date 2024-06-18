@@ -109,7 +109,7 @@ Transform:
   m_GameObject: {fileID: 3023429430403894435}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.035, y: 0.377, z: 0}
+  m_LocalPosition: {x: 0.035, y: 0.006, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -202,6 +202,7 @@ MonoBehaviour:
     type: 3}
   _dieEffect: {fileID: 7328773732955115835, guid: 0c3ad027185f0de488b4b767cfb56aee,
     type: 3}
+  _product: {fileID: 11400000, guid: 2aa777eef85e7264db882bc95fda2b6e, type: 2}
   _productTypes: 6
 --- !u!54 &7480208372042392443
 Rigidbody:

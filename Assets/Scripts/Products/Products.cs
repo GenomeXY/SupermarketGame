@@ -10,7 +10,13 @@ public enum ProductsTypes
     Mushroom,
     Cheese,
     Donut,
-    Tomato
+    Tomato,
+    CornFlakes,
+    Eggs,
+    Fish,
+    Chicken,
+    Milk,
+    Baguette
 }
 public abstract class Products : ScriptableObject
 {
@@ -18,7 +24,6 @@ public abstract class Products : ScriptableObject
     public GameObject Prefab;
     public Sprite Sprite;
     public int Amount;
-    public int Amount2;
 
     public abstract void Initialize();
 }
