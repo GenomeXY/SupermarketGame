@@ -129,6 +129,10 @@ public class FallingObjectsSpawner : MonoBehaviour
 
             // Вызываем событие об изменении количества продукта
             OnProductAmountChanged?.Invoke(collectedProduct);
+            
+            // Увеличиваем общий счет
+            TotalScore++;
+            Debug.Log($"Collected a selected product! Total Score: {TotalScore}, {collectedProduct.ProductTypes} Amount left: {collectedProduct.Amount}");
 
             if (collectedProduct.Amount <= 0)
             {
@@ -136,10 +140,6 @@ public class FallingObjectsSpawner : MonoBehaviour
                 _fallingProducts.Remove(collectedProduct);
                 Debug.Log($"Product {collectedProduct.ProductTypes} has been removed from falling products.");
             }
-            // Увеличиваем общий счет
-            TotalScore++;
-            Debug.Log($"Collected a selected product! Total Score: {TotalScore}, {collectedProduct.ProductTypes} Amount left: {collectedProduct.Amount}");
-
         }
         else
         {

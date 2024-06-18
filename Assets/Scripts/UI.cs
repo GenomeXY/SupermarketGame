@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -8,6 +9,7 @@ public class UI : MonoBehaviour
 {
     [SerializeField] private GameObject _uiCanvas;
     [SerializeField] private FallingObjectsSpawner _fallingObjectsSpawner;
+    [SerializeField] private GameObject _winCanvas; // Канвас для окна победы
 
     public RawImage rawImageProduct1;
     public RawImage rawImageProduct2;
@@ -30,19 +32,34 @@ public class UI : MonoBehaviour
     {
         FallingObjectsSpawner.OnProductAmountChanged -= UpdateProductAmount;
     }
+
     void Start()
     {
-        Point1 = _fallingObjectsSpawner.selectedProducts[0].Amount;
-        Point2 = _fallingObjectsSpawner.selectedProducts[1].Amount;
-        Point3 = _fallingObjectsSpawner.selectedProducts[2].Amount;
+        InitializeUI();
+    }
 
-        textproduct1.text = Point1.ToString();
-        textproduct2.text = Point2.ToString();
-        textproduct3.text = Point3.ToString();
+    private void InitializeUI()
+    {
+        if (_fallingObjectsSpawner.selectedProducts.Count > 0)
+        {
+            Point1 = _fallingObjectsSpawner.selectedProducts[0].Amount;
+            rawImageProduct1.texture = _fallingObjectsSpawner.selectedProducts[0].Sprite.texture;
+            textproduct1.text = Point1.ToString();
+        }
 
-        rawImageProduct1.texture = _fallingObjectsSpawner.selectedProducts[0].Sprite.texture;
-        rawImageProduct2.texture = _fallingObjectsSpawner.selectedProducts[1].Sprite.texture;
-        rawImageProduct3.texture = _fallingObjectsSpawner.selectedProducts[2].Sprite.texture;
+        if (_fallingObjectsSpawner.selectedProducts.Count > 1)
+        {
+            Point2 = _fallingObjectsSpawner.selectedProducts[1].Amount;
+            rawImageProduct2.texture = _fallingObjectsSpawner.selectedProducts[1].Sprite.texture;
+            textproduct2.text = Point2.ToString();
+        }
+
+        if (_fallingObjectsSpawner.selectedProducts.Count > 2)
+        {
+            Point3 = _fallingObjectsSpawner.selectedProducts[2].Amount;
+            rawImageProduct3.texture = _fallingObjectsSpawner.selectedProducts[2].Sprite.texture;
+            textproduct3.text = Point3.ToString();
+        }
     }
 
     private void UpdateProductAmount(Products product)
@@ -66,6 +83,21 @@ public class UI : MonoBehaviour
                     textproduct3.text = Point3.ToString();
                     break;
             }
+
+            // Проверяем, все ли продукты собраны
+            CheckIfAllProductsCollected();
+        }
+    }
+
+    private void CheckIfAllProductsCollected()
+    {
+        if (_fallingObjectsSpawner.selectedProducts.All(product => product.Amount <= 0))
+        {
+            // Останавливаем игру и открываем канвас победы
+            Time.timeScale = 0f; // Останавливаем время
+            _uiCanvas.SetActive(false); // Деактивируем основной UI
+            _winCanvas.SetActive(true); // Активируем канвас победы
+            MyAudioManager.Instance.WinSound.Play();
         }
     }
 }

@@ -13,7 +13,8 @@ public class MyAudioManager : MonoBehaviour
     public AudioSource FoodColectSound;
     public AudioSource CountdownSound;
     public AudioSource StartSound;
-    public AudioSource SmashSound; 
+    public AudioSource SmashSound;
+    public AudioSource WinSound;
     private void Awake()
     {
         if (Instance == null)
