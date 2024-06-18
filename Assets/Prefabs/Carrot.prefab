@@ -29,7 +29,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 1.28, z: 0}
-  m_LocalScale: {x: 0.6, y: 0.6, z: 0.6}
+  m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 4526448975163340745}
@@ -49,7 +49,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _fallSpeed: 1
-  _objectExplosion: {fileID: 8550051998276758377, guid: 6f14ea3b4707b0f43a7d2a7dd397992e,
+  _collectEffect: {fileID: 8550051998276758377, guid: 6f14ea3b4707b0f43a7d2a7dd397992e,
+    type: 3}
+  _dieEffect: {fileID: 7328773732955115835, guid: 0c3ad027185f0de488b4b767cfb56aee,
     type: 3}
 --- !u!114 &-926210950497405505
 MonoBehaviour:

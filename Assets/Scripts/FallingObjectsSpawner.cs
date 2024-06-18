@@ -1,15 +1,30 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class FallingObjectsSpawner : MonoBehaviour
 {
-    [SerializeField] private GameObject[] _fallingObjectPrefabs; // Массив префабов падающих предметов
-    [SerializeField] private float _spawnInterval = 1.0f; // Интервал между спавнами предметов
+    public static Action<Products> OnProductAmountChanged;
+
+    [SerializeField] private List<Products> _fallingProducts; // Список падающих продуктов
+    [SerializeField] public List<Products> selectedProducts = new List<Products>(); // Список продуктов для сбора
+    [SerializeField] private float _spawnInterval = 2.0f; // Интервал между спавнами предметов
     [SerializeField] private float _spawnRange = 2.5f; // Диапазон, в котором предметы могут появляться (соответствует диапазону передвижения игрока)
 
     private float _timeSinceLastSpawn = 0.0f;
+    public int TotalScore = 0;
 
+    private void Start()
+    {
+        //selectedProducts.Clear();
+        FallingObject.OnCollected += HandleProductCollected; // Подписываемся на событие сбора        
+    }
+    private void OnDestroy()
+    {
+        FallingObject.OnCollected -= HandleProductCollected; // Отписываемся от события при разрушении
+    }
     private void Update()
     {
         _timeSinceLastSpawn += Time.deltaTime;
@@ -23,20 +38,74 @@ public class FallingObjectsSpawner : MonoBehaviour
 
     private void SpawnFallingObject()
     {
-        if (_fallingObjectPrefabs.Length == 0)
+        if (_fallingProducts.Count == 0)
         {
-            Debug.LogWarning("Для падающих объектов не назначены префабы.");
+            Debug.LogWarning("Нет данных для падающих предметов.");
             return;
         }
 
-        float randomX = Random.Range(-_spawnRange, _spawnRange);
+        float randomX = UnityEngine.Random.Range(-_spawnRange, _spawnRange);
         Vector3 spawnPosition = new Vector3(randomX, transform.position.y, transform.position.z);
 
-        // Выбираем случайный префаб из массива
-        int randomIndex = Random.Range(0, _fallingObjectPrefabs.Length);
-        GameObject selectedPrefab = _fallingObjectPrefabs[randomIndex];
+        // Выбираем случайный префаб из списка
+        int randomIndex = UnityEngine.Random.Range(0, _fallingProducts.Count);
+        GameObject selectedPrefab = _fallingProducts[randomIndex].Prefab;
 
         // Создаем падающий объект 
         GameObject fallingObject = Instantiate(selectedPrefab, spawnPosition, Quaternion.identity);
+    }
+
+    public void Select3RandomProducts()
+    {
+        // Проверяем, достаточно ли продуктов для выбора 3 случайных
+        if (_fallingProducts.Count < 3)
+        {
+            Debug.LogWarning("Недостаточно продуктов для отображения.");
+            return;
+        }
+
+        // Создаем временный список для работы с случайным выбором
+        List<Products> tempFallingProducts = new List<Products>(_fallingProducts);
+        //selectedProducts.Clear();
+
+        // Выбираем 3 случайных продукта
+        for (int i = 0; i < 3; i++)
+        {
+            int randomIndex = UnityEngine.Random.Range(0, tempFallingProducts.Count);
+            Products selectedProduct = tempFallingProducts[randomIndex];
+            selectedProducts.Add(selectedProduct);
+            selectedProduct.Initialize();
+            tempFallingProducts.RemoveAt(randomIndex); // Удаляем выбранный продукт из временного списка
+        }
+    }
+
+    private void HandleProductCollected(ProductsTypes productType)
+    {
+        // Находим продукт в списке selectedProducts с соответствующим типом
+        Products collectedProduct = selectedProducts.FirstOrDefault(product => product.ProductTypes == productType);
+
+        if (collectedProduct != null)
+        {
+            // Уменьшаем количество (Amount)
+            collectedProduct.Amount--;
+
+            // Увеличиваем общий счет
+            TotalScore++;
+            Debug.Log($"Collected a selected product! Total Score: {TotalScore}, {collectedProduct.ProductTypes} Amount left: {collectedProduct.Amount}");
+            
+            // Вызываем событие об изменении количества продукта
+            OnProductAmountChanged?.Invoke(collectedProduct);
+
+            // Если количество (Amount) достигло нуля, удаляем продукт из списка
+            if (collectedProduct.Amount <= 0)
+            {
+                selectedProducts.Remove(collectedProduct);
+                Debug.Log($"Product {collectedProduct.ProductTypes} has been depleted and removed from selected products.");
+            }
+        }
+        else
+        {
+            Debug.Log("Collected a product that is not selected.");
+        }
     }
 }
