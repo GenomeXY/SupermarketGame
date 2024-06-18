@@ -54,15 +54,15 @@ public class UI : MonoBehaviour
             switch (index)
             {
                 case 0:
-                    Point1 = product.Amount;
+                    Point1 = Mathf.Max(product.Amount, 0);
                     textproduct1.text = Point1.ToString();
                     break;
                 case 1:
-                    Point2 = product.Amount;
+                    Point2 = Mathf.Max(product.Amount, 0);
                     textproduct2.text = Point2.ToString();
                     break;
                 case 2:
-                    Point3 = product.Amount;
+                    Point3 = Mathf.Max(product.Amount, 0);
                     textproduct3.text = Point3.ToString();
                     break;
             }

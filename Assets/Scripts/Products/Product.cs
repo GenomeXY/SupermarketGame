@@ -7,6 +7,6 @@ public class Product : Products
 {  
     public override void Initialize()
     {
-        Amount = Random.Range(1, 11); // Устанавливаем случайное значение от 1 до 10
+        Amount = Random.Range(1, 4); // Устанавливаем случайное значение от 1 до 4
     }
 }

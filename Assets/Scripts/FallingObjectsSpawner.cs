@@ -84,17 +84,18 @@ public class FallingObjectsSpawner : MonoBehaviour
         // Ќаходим продукт в списке selectedProducts с соответствующим типом
         Products collectedProduct = selectedProducts.FirstOrDefault(product => product.ProductTypes == productType);
 
-        if (collectedProduct != null)
+        // ѕровер€ем, что продукт существует и его количество больше нул€
+        if (collectedProduct != null && collectedProduct.Amount > 0)
         {
             // ”меньшаем количество (Amount)
             collectedProduct.Amount--;
 
+            // ¬ызываем событие об изменении количества продукта
+            OnProductAmountChanged?.Invoke(collectedProduct);
+
             // ”величиваем общий счет
             TotalScore++;
             Debug.Log($"Collected a selected product! Total Score: {TotalScore}, {collectedProduct.ProductTypes} Amount left: {collectedProduct.Amount}");
-            
-            // ¬ызываем событие об изменении количества продукта
-            OnProductAmountChanged?.Invoke(collectedProduct);
 
             // ≈сли количество (Amount) достигло нул€, удал€ем продукт из списка
             if (collectedProduct.Amount <= 0)
@@ -105,7 +106,7 @@ public class FallingObjectsSpawner : MonoBehaviour
         }
         else
         {
-            Debug.Log("Collected a product that is not selected.");
+            Debug.Log("Collected a product that is not selected or already depleted.");
         }
     }
 }
