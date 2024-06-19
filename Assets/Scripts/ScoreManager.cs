@@ -54,4 +54,11 @@ public class ScoreManager : MonoBehaviour
             _gameManager.WinGameState();
         }
     }
+
+    public void Restart()
+    {
+        // Ничего не нужно сбрасывать в ScoreManager
+        // Просто перезапустим отслеживание сбора продуктов
+        FallingObject.OnCollected += HandleProductCollected;
+    }
 }

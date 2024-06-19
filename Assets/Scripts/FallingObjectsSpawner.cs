@@ -6,7 +6,7 @@ using UnityEngine;
 public class FallingObjectsSpawner : MonoBehaviour
 {   
     public List<Products> fallingProducts;                         // Список падающих продуктов
-    //public List<Products> tempfallingProducts;                     // Временный список падающих продуктов
+    //public List<Products> tempfallingProducts;                   // Временный список падающих продуктов
     public List<Products> selectedProducts = new List<Products>(); // Список продуктов для сбора
 
     [SerializeField] private float _spawnInterval = 2.0f;          // Интервал между спавнами предметов
@@ -99,6 +99,21 @@ public class FallingObjectsSpawner : MonoBehaviour
             }
         }
         return products[products.Count - 1]; // На случай, если что-то пошло не так, возвращаем последний продукт
-    }    
+    }
+
+    //public void ClearLists()
+    //{
+    //    selectedProducts.Clear();
+    //}
+
+    public void RestartSpawner()
+    {
+        // Очищаем список выбранных продуктов
+        selectedProducts.Clear();
+
+        // Повторно инициализируем вероятность выпадения продуктов
+        InitializeDropChances();
+        Select3RandomProducts();
+    }
 }
 

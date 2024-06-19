@@ -16,7 +16,7 @@ public class GameManager : MonoBehaviour
     }
 
     public void StartMenuGameState()
-    {       
+    {
         LootSpawner.GetComponent<FallingObjectsSpawner>().InitializeDropChances(); // Инициализируем вероятности выпадения продуктов
         LootSpawner.GetComponent<FallingObjectsSpawner>().Select3RandomProducts(); // Выбираем 3 случайных продукта для сбора
 
@@ -55,5 +55,26 @@ public class GameManager : MonoBehaviour
     {
         TapHandler.SetActive(false);
         LootSpawner.SetActive(false);
-    }    
+    }
+
+    public void RestartGame()
+    {
+        LootSpawner.GetComponent<FallingObjectsSpawner>().RestartSpawner();
+        GameProcessDeactivate();
+        _uiCanvas.SetActive(false);
+        _winCanvas.SetActive(false);
+        _menuCanvas.SetActive(true);
+
+        Menu menu = FindObjectOfType<Menu>();
+        if (menu != null)
+        {
+            menu.Restart();
+        }
+
+        ScoreManager scoreManager = FindObjectOfType<ScoreManager>();
+        if (scoreManager != null)
+        {
+            scoreManager.Restart();
+        }
+    }
 }

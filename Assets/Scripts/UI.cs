@@ -25,6 +25,7 @@ public class UI : MonoBehaviour
     private void OnEnable()
     {
         ScoreManager.OnProductAmountChanged += UpdateProductAmount;
+        InitializeUI();
     }
 
     private void OnDisable()
@@ -32,10 +33,10 @@ public class UI : MonoBehaviour
         ScoreManager.OnProductAmountChanged -= UpdateProductAmount;
     }
 
-    void Start()
-    {
-        InitializeUI();
-    }
+    //void Start()
+    //{
+    //    InitializeUI();
+    //}
 
     private void InitializeUI()
     {
