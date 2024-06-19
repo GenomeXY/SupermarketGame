@@ -12,7 +12,7 @@ public class ScoreManager : MonoBehaviour
 
 
     public static Action<Products> OnProductAmountChanged; 
-    private void Start()
+    private void OnEnable()
     {
         // Подписываемся на событие сбора
         FallingObject.OnCollected += HandleProductCollected;
@@ -40,8 +40,8 @@ public class ScoreManager : MonoBehaviour
             if (collectedProduct.Amount <= 0)
             {
                 // Удаляем продукт из списка падающих продуктов
-                _spawner.fallingProducts.Remove(collectedProduct);
-                Debug.Log($"Product {collectedProduct.ProductTypes} has been removed from falling products.");
+                //_spawner.fallingProducts.Remove(collectedProduct);
+                //Debug.Log($"Product {collectedProduct.ProductTypes} has been removed from falling products.");
             }
         }
     }
@@ -59,6 +59,8 @@ public class ScoreManager : MonoBehaviour
     {
         // Ничего не нужно сбрасывать в ScoreManager
         // Просто перезапустим отслеживание сбора продуктов
-        FallingObject.OnCollected += HandleProductCollected;
+        //FallingObject.OnCollected += HandleProductCollected;
     }
+
+
 }

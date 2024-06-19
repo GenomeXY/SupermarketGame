@@ -65,7 +65,7 @@ public class Menu : MonoBehaviour
         _pulseButton.gameObject.SetActive(false);        
         //_productListAnimator.SetTrigger("Start");
         //_textInstructionsAnimator.enabled = true;        // запускаем анимацию отслета текста инструкций
-        StartCoroutine(SoundDelay());
+        //StartCoroutine(SoundDelay());
         yield return new WaitForSeconds(1f);                
         MyAudioManager.Instance.BackMenuMusic.Stop(); 
         MyAudioManager.Instance.BackGameMusic.Play();

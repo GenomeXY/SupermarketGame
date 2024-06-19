@@ -10,6 +10,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private GameObject _uiCanvas;
     [SerializeField] private GameObject _winCanvas;
     [SerializeField] private GameObject _countdownCanvas;
+
     private void Awake()
     {       
         StartMenuGameState();                      
@@ -59,6 +60,7 @@ public class GameManager : MonoBehaviour
 
     public void RestartGame()
     {
+
         LootSpawner.GetComponent<FallingObjectsSpawner>().RestartSpawner();
         GameProcessDeactivate();
         _uiCanvas.SetActive(false);

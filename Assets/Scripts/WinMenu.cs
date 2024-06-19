@@ -12,18 +12,22 @@ public class WinMenu : MonoBehaviour
     [SerializeField] private Menu _menu;
     [SerializeField] private GameObject _conf1Effect;
     [SerializeField] private GameObject _conf2Effect;
+    [SerializeField] private GameObject _conf3Effect;
 
     private void OnEnable()
     {
         StartCoroutine(RestartMenu());
-        _conf1Effect.SetActive(true);
-        _conf2Effect.SetActive(true);
     }
 
     private IEnumerator RestartMenu()
     {
-        yield return new WaitForSeconds(3f);
+        _conf3Effect.SetActive(true);
+        yield return new WaitForSeconds(0.7f);
+        _conf1Effect.SetActive(true);
+        yield return new WaitForSeconds(0.7f);
+        _conf2Effect.SetActive(true);
 
+        yield return new WaitForSeconds(3.9f);        
         MyAudioManager.Instance.BackGameMusic.Stop();
 
         _gameManager.RestartGame();
