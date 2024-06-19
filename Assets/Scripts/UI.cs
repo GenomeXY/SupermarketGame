@@ -40,26 +40,38 @@ public class UI : MonoBehaviour
 
     private void InitializeUI()
     {
-        if (_fallingObjectsSpawner.selectedProducts.Count > 0)
-        {
-            Point1 = _fallingObjectsSpawner.selectedProducts[0].Amount;
-            rawImageProduct1.texture = _fallingObjectsSpawner.selectedProducts[0].Sprite.texture;
-            textproduct1.text = Point1.ToString();
-        }
+        Point1 = _fallingObjectsSpawner.selectedProducts[0].Amount;
+        Point2 = _fallingObjectsSpawner.selectedProducts[1].Amount;
+        Point3 = _fallingObjectsSpawner.selectedProducts[2].Amount;
 
-        if (_fallingObjectsSpawner.selectedProducts.Count > 1)
-        {
-            Point2 = _fallingObjectsSpawner.selectedProducts[1].Amount;
-            rawImageProduct2.texture = _fallingObjectsSpawner.selectedProducts[1].Sprite.texture;
-            textproduct2.text = Point2.ToString();
-        }
+        rawImageProduct1.texture = _fallingObjectsSpawner.selectedProducts[0].Sprite.texture;
+        rawImageProduct2.texture = _fallingObjectsSpawner.selectedProducts[1].Sprite.texture;
+        rawImageProduct3.texture = _fallingObjectsSpawner.selectedProducts[2].Sprite.texture;
 
-        if (_fallingObjectsSpawner.selectedProducts.Count > 2)
-        {
-            Point3 = _fallingObjectsSpawner.selectedProducts[2].Amount;
-            rawImageProduct3.texture = _fallingObjectsSpawner.selectedProducts[2].Sprite.texture;
-            textproduct3.text = Point3.ToString();
-        }
+        textproduct1.text = Point1.ToString();
+        textproduct2.text = Point2.ToString();
+        textproduct3.text = Point3.ToString();
+
+        //if (_fallingObjectsSpawner.selectedProducts.Count > 0)
+        //{
+        //    Point1 = _fallingObjectsSpawner.selectedProducts[0].Amount;
+        //    rawImageProduct1.texture = _fallingObjectsSpawner.selectedProducts[0].Sprite.texture;
+        //    textproduct1.text = Point1.ToString();
+        //}
+
+        //if (_fallingObjectsSpawner.selectedProducts.Count > 1)
+        //{
+        //    Point2 = _fallingObjectsSpawner.selectedProducts[1].Amount;
+        //    rawImageProduct2.texture = _fallingObjectsSpawner.selectedProducts[1].Sprite.texture;
+        //    textproduct2.text = Point2.ToString();
+        //}
+
+        //if (_fallingObjectsSpawner.selectedProducts.Count > 2)
+        //{
+        //    Point3 = _fallingObjectsSpawner.selectedProducts[2].Amount;
+        //    rawImageProduct3.texture = _fallingObjectsSpawner.selectedProducts[2].Sprite.texture;
+        //    textproduct3.text = Point3.ToString();
+        //}
     }
 
     private void UpdateProductAmount(Products product)

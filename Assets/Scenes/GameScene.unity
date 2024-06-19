@@ -14274,7 +14274,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _tapGesture: {fileID: 495600148}
   _playerTransform: {fileID: 1539431060602144261}
-  _maxXposition: 2.6
+  _maxXposition: 4
   _moveSpeed: 0.3
   _tapCooldown: 0
 --- !u!114 &495600148
