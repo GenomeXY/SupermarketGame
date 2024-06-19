@@ -2,11 +2,14 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class ScoreManager : MonoBehaviour
 {
     [SerializeField] private FallingObjectsSpawner _spawner;
+    [SerializeField] private GameManager _gameManager;
+
 
     public static Action<Products> OnProductAmountChanged; 
     private void Start()
@@ -40,6 +43,15 @@ public class ScoreManager : MonoBehaviour
                 _spawner.fallingProducts.Remove(collectedProduct);
                 Debug.Log($"Product {collectedProduct.ProductTypes} has been removed from falling products.");
             }
+        }
+    }
+
+    public void CheckIfAllProductsCollected()
+    {
+        if (_spawner.selectedProducts.All(product => product.Amount <= 0))
+        {
+            MyAudioManager.Instance.WinSound.Play();
+            _gameManager.WinGameState();
         }
     }
 }

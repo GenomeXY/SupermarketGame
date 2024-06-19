@@ -25,8 +25,7 @@ public class GameManager : MonoBehaviour
         _countdownCanvas.SetActive(false); // деактивируем канвас с обратным отсчетом
         _uiCanvas.SetActive(false);        // деактивируем канвас с UI        
         _menuCanvas.SetActive(true);       // активируем канвас с главным меню
-    }
-
+    }    
     public void CountdownGameState()
     {
         _menuCanvas.SetActive(false);
@@ -42,6 +41,8 @@ public class GameManager : MonoBehaviour
     public void WinGameState()
     {
         GameProcessDeactivate();
+        _uiCanvas.SetActive(false);
+        _winCanvas.SetActive(true);
     }
 
     public void GameProcessActivate() 

@@ -9,11 +9,11 @@ public class FallingObjectsSpawner : MonoBehaviour
     //public List<Products> tempfallingProducts;                     // Временный список падающих продуктов
     public List<Products> selectedProducts = new List<Products>(); // Список продуктов для сбора
 
-    [SerializeField] private float _spawnInterval = 2.0f;                           // Интервал между спавнами предметов
-    [SerializeField] private float _spawnRange = 2.6f;                              // Диапазон, в котором предметы могут появляться 
+    [SerializeField] private float _spawnInterval = 2.0f;          // Интервал между спавнами предметов
+    [SerializeField] private float _spawnRange = 2.6f;             // Диапазон, в котором предметы могут появляться 
     [Header("Drop Chances")]
-    [SerializeField] private float defaultDropChance = 1.0f;                        // Базовая вероятность выпадения для обычных продуктов
-    [SerializeField] private float selectedDropChance = 5.0f;                       // Вероятность выпадения для выбранных продуктов
+    [SerializeField] private float defaultDropChance = 1.0f;       // Базовая вероятность выпадения для обычных продуктов
+    [SerializeField] private float selectedDropChance = 5.0f;      // Вероятность выпадения для выбранных продуктов
 
     private float _timeSinceLastSpawn = 0.0f;
 
@@ -78,7 +78,7 @@ public class FallingObjectsSpawner : MonoBehaviour
         // Устанавливаем базовый шанс выпадения для всех продуктов
         foreach (var product in fallingProducts)
         {
-            product.Initialize(); // Убедитесь, что продукты инициализированы
+            product.Initialize(); 
             product.SetDropChance(defaultDropChance);
         }
     }

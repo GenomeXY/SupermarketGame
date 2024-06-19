@@ -15,5 +15,5 @@ MonoBehaviour:
   ProductTypes: 4
   Prefab: {fileID: 6138324215283334845, guid: 5bb467eae6642374cb780ffa1363a68d, type: 3}
   Sprite: {fileID: 21300000, guid: 30c0ede142f2ec647b8cd4796af7d6c8, type: 3}
-  Amount: 3
-  Amount2: 0
+  Amount: 1
+  DropChance: 5

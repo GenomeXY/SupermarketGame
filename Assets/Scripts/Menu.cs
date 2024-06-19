@@ -22,14 +22,26 @@ public class Menu : MonoBehaviour
     [SerializeField] private Animator _textInstructionsAnimator;    
     void Start()
     {
+        
         SetDataInMenu();
         MyAudioManager.Instance.BackMenuMusic.Play();
-        _startButtonAnimator.enabled = true;                // включаем анимацию кнопки старт
-        _productListAnimator.enabled = false;               // отключаем анимацию списка продуктов
         _textInstructionsAnimator.enabled = false;          // отключаем анимацию текста с инструкцией
         ObjectInterAction.OnStartTapped += StartGame;       // подписываем StartGame на событие при нажатии на кнопку старт
     }
 
+    private void OnEnable()
+    {
+        _startButtonAnimator.SetTrigger("Shake");
+    }
+    public void Restart()
+    {
+        _productListAnimator.SetTrigger("Exit");
+        _startButtonAnimator.SetTrigger("Exit");
+        SetDataInMenu();
+        MyAudioManager.Instance.BackMenuMusic.Play();        
+        _textInstructionsAnimator.enabled = false;          // отключаем анимацию текста с инструкцией
+        ObjectInterAction.OnStartTapped += StartGame;       // подписываем StartGame на событие при нажатии на кнопку старт
+    }
     private void SetDataInMenu()
     {
         rawImageProduct1.texture = _fallingObjectsSpawner.selectedProducts[0].Sprite.texture;
@@ -48,14 +60,13 @@ public class Menu : MonoBehaviour
     private IEnumerator StartGameProcess()
     {
         _startButtonAnimator.SetTrigger("Start");        // запускаем анимацию перелета и вращения кнопки
-        _productListAnimator.enabled = true;             // запускаем анимацию отлета списка продуктов
+        _productListAnimator.SetTrigger("Start");
         _textInstructionsAnimator.enabled = true;        // запускаем анимацию отслета текста инструкций
         StartCoroutine(SoundDelay());
-        yield return new WaitForSeconds(1f);        
-        _startButtonAnimator.enabled = false;            // выключаем анимацию кнопки старт         
+        yield return new WaitForSeconds(1f);                
         MyAudioManager.Instance.BackMenuMusic.Stop(); 
         MyAudioManager.Instance.BackGameMusic.Play();
-        _gameManager.CountdownGameState();
+        _gameManager.CountdownGameState();        
     }
     private IEnumerator SoundDelay() 
     {

@@ -7,7 +7,7 @@ public class Product : Products
 {  
     public override void Initialize()
     {
-        Amount = Random.Range(1, 4); // Устанавливаем случайное значение от 1 до 4 (кол-во продукта для сбора)
+        Amount = Random.Range(1, 2); // Устанавливаем случайное значение от 1 до 4 (кол-во продукта для сбора)
     }
 
     public override void SetDropChance(float chance)
