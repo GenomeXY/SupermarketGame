@@ -9,10 +9,10 @@ public class Countdown : MonoBehaviour
     [SerializeField] private GameManager _gameManager;
     public void StartCountdown()
     {           
-        StartCoroutine(CountdownUIText());          
+        StartCoroutine(CountdownUIProcess());          
     }
 
-    private IEnumerator CountdownUIText()
+    private IEnumerator CountdownUIProcess()
     {
         _countdownText.text = "3";
         MyAudioManager.Instance.CountdownSound.Play();
@@ -26,7 +26,6 @@ public class Countdown : MonoBehaviour
         _countdownText.text = "GO!";
         MyAudioManager.Instance.StartSound.Play();
         yield return new WaitForSeconds(1f);
-        _gameManager.GameActivate();
-        gameObject.SetActive(false);
+        _gameManager.GameState();
     }
 }

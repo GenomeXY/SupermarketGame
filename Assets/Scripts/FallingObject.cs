@@ -13,8 +13,8 @@ public class FallingObject : MonoBehaviour
     [SerializeField] private GameObject _dieEffect;
 
     [SerializeField] private Product _product; // —сылка на ScriptableObject
-
     [SerializeField] private ProductsTypes _productTypes;
+
     private void Start()
     {
         if (_product != null)

@@ -10,7 +10,7 @@ public class ObjectInterAction : MonoBehaviour
     public static Action OnStartTapped;
     [SerializeField] private TapGesture _tapGesture;
 
-    private void Start()
+    private void OnEnable()
     {
         // Подписываемся на событие нажатия
         _tapGesture.Tapped += OnTapped;

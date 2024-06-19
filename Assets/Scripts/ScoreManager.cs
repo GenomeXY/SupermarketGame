@@ -1,0 +1,45 @@
+using System;
+using System.Collections;
+using System.Collections.Generic;
+using System.Linq;
+using UnityEngine;
+
+public class ScoreManager : MonoBehaviour
+{
+    [SerializeField] private FallingObjectsSpawner _spawner;
+
+    public static Action<Products> OnProductAmountChanged; 
+    private void Start()
+    {
+        // Подписываемся на событие сбора
+        FallingObject.OnCollected += HandleProductCollected;
+    }
+
+    private void OnDestroy()
+    {
+        // Отписываемся от события сбора
+        FallingObject.OnCollected -= HandleProductCollected;
+    }
+    private void HandleProductCollected(ProductsTypes productType)
+    {
+        // Находим продукт в списке selectedProducts с соответствующим типом
+        Products collectedProduct = _spawner.selectedProducts.FirstOrDefault(product => product.ProductTypes == productType);
+
+        // Проверяем, что продукт существует и его количество больше нуля
+        if (collectedProduct != null && collectedProduct.Amount > 0)
+        {
+            // Уменьшаем количество (Amount)
+            collectedProduct.Amount--;
+
+            // Вызываем событие об изменении количества продукта
+            OnProductAmountChanged?.Invoke(collectedProduct);
+
+            if (collectedProduct.Amount <= 0)
+            {
+                // Удаляем продукт из списка падающих продуктов
+                _spawner.fallingProducts.Remove(collectedProduct);
+                Debug.Log($"Product {collectedProduct.ProductTypes} has been removed from falling products.");
+            }
+        }
+    }
+}

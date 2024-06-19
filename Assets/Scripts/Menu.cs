@@ -6,11 +6,7 @@ using UnityEngine.UI;
 
 public class Menu : MonoBehaviour
 {
-    [SerializeField] private GameObject _menuCanvas;
-    [SerializeField] private GameObject _uiCanvas;
-    [SerializeField] private Countdown _countdown;
     [SerializeField] private GameManager _gameManager;
-
     [SerializeField] private FallingObjectsSpawner _fallingObjectsSpawner;
 
     public RawImage rawImageProduct1;
@@ -46,23 +42,20 @@ public class Menu : MonoBehaviour
     public void StartGame()
     {
         MyAudioManager.Instance.StartButtonClick.Play();    // включаем звук нажатия на кнопку
-        StartCoroutine(MenuDisable());                      // запускаем корутину отключающую меню
+        StartCoroutine(StartGameProcess());                 // запускаем корутину отключающую меню        
     }
 
-    private IEnumerator MenuDisable()
+    private IEnumerator StartGameProcess()
     {
         _startButtonAnimator.SetTrigger("Start");        // запускаем анимацию перелета и вращения кнопки
         _productListAnimator.enabled = true;             // запускаем анимацию отлета списка продуктов
         _textInstructionsAnimator.enabled = true;        // запускаем анимацию отслета текста инструкций
         StartCoroutine(SoundDelay());
         yield return new WaitForSeconds(1f);        
-        _startButtonAnimator.enabled = false;            // выключаем анимацию кнопки старт
-        _menuCanvas.SetActive(false);                    // выключаем канвас с меню        
-        _countdown.gameObject.SetActive(true);
-        MyAudioManager.Instance.BackMenuMusic.Stop();
+        _startButtonAnimator.enabled = false;            // выключаем анимацию кнопки старт         
+        MyAudioManager.Instance.BackMenuMusic.Stop(); 
         MyAudioManager.Instance.BackGameMusic.Play();
-        _uiCanvas.SetActive(true);
-        _countdown.StartCountdown();        
+        _gameManager.CountdownGameState();
     }
     private IEnumerator SoundDelay() 
     {

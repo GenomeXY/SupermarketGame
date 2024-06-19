@@ -25,12 +25,12 @@ public class UI : MonoBehaviour
 
     private void OnEnable()
     {
-        FallingObjectsSpawner.OnProductAmountChanged += UpdateProductAmount;
+        ScoreManager.OnProductAmountChanged += UpdateProductAmount;
     }
 
     private void OnDisable()
     {
-        FallingObjectsSpawner.OnProductAmountChanged -= UpdateProductAmount;
+        ScoreManager.OnProductAmountChanged -= UpdateProductAmount;
     }
 
     void Start()
@@ -51,27 +51,6 @@ public class UI : MonoBehaviour
         textproduct1.text = Point1.ToString();
         textproduct2.text = Point2.ToString();
         textproduct3.text = Point3.ToString();
-
-        //if (_fallingObjectsSpawner.selectedProducts.Count > 0)
-        //{
-        //    Point1 = _fallingObjectsSpawner.selectedProducts[0].Amount;
-        //    rawImageProduct1.texture = _fallingObjectsSpawner.selectedProducts[0].Sprite.texture;
-        //    textproduct1.text = Point1.ToString();
-        //}
-
-        //if (_fallingObjectsSpawner.selectedProducts.Count > 1)
-        //{
-        //    Point2 = _fallingObjectsSpawner.selectedProducts[1].Amount;
-        //    rawImageProduct2.texture = _fallingObjectsSpawner.selectedProducts[1].Sprite.texture;
-        //    textproduct2.text = Point2.ToString();
-        //}
-
-        //if (_fallingObjectsSpawner.selectedProducts.Count > 2)
-        //{
-        //    Point3 = _fallingObjectsSpawner.selectedProducts[2].Amount;
-        //    rawImageProduct3.texture = _fallingObjectsSpawner.selectedProducts[2].Sprite.texture;
-        //    textproduct3.text = Point3.ToString();
-        //}
     }
 
     private void UpdateProductAmount(Products product)

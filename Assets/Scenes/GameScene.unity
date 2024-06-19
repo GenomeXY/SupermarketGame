@@ -8831,8 +8831,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4294967295
-  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+    rgba: 4288282623
+  m_fontColor: {r: 1, g: 1, b: 0.6, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -10260,9 +10260,8 @@ MonoBehaviour:
   LootSpawner: {fileID: 2085925425}
   _menuCanvas: {fileID: 1783859726}
   _uiCanvas: {fileID: 1889907755}
-  _winCanvas: {fileID: 0}
+  _winCanvas: {fileID: 80874828}
   _countdownCanvas: {fileID: 1786062887}
-  _fallingObjectsSpawner: {fileID: 2085925428}
 --- !u!4 &327195299
 Transform:
   m_ObjectHideFlags: 0
@@ -13349,6 +13348,51 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 460122919}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &463474145
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 463474147}
+  - component: {fileID: 463474146}
+  m_Layer: 0
+  m_Name: ScoreManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &463474146
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 463474145}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ed59e445b2f1d2f47825988cc53b0d53, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _spawner: {fileID: 2085925428}
+--- !u!4 &463474147
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 463474145}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &468033258
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -35210,8 +35254,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4294967295
-  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+    rgba: 4288282623
+  m_fontColor: {r: 1, g: 1, b: 0.6, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -36389,8 +36433,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4294967295
-  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+    rgba: 4288282623
+  m_fontColor: {r: 1, g: 1, b: 0.6, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -49260,9 +49304,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 03939792586ad814ca3d04050b06b2bb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _menuCanvas: {fileID: 1783859726}
-  _uiCanvas: {fileID: 1889907755}
-  _countdown: {fileID: 1786062888}
   _gameManager: {fileID: 327195298}
   _fallingObjectsSpawner: {fileID: 2085925428}
   rawImageProduct1: {fileID: 1960413825}
@@ -51738,11 +51779,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Player 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4768288520875612060, guid: b74bda8dbb0703d478c39b97e10f6342,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7171387493427737112, guid: b74bda8dbb0703d478c39b97e10f6342,
         type: 3}
@@ -57147,19 +57183,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1ae29a63da181694e86163a2d0987a35, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _fallingProducts:
+  fallingProducts:
   - {fileID: 11400000, guid: 480f9d4c3e293514d95447fb20b5c472, type: 2}
   - {fileID: 11400000, guid: 2dc3b1f847dfb2a4a9ca7f616fe429b8, type: 2}
-  - {fileID: 11400000, guid: e22674977e2c74e40973229473565f97, type: 2}
-  - {fileID: 11400000, guid: dc18f3f9cc198cb4e851120521b42b27, type: 2}
-  - {fileID: 11400000, guid: 2aa777eef85e7264db882bc95fda2b6e, type: 2}
   - {fileID: 11400000, guid: f471bb68b9d33b74b804f63cdd35d67c, type: 2}
   - {fileID: 11400000, guid: 3a1eb63ff3dc2584f8233cf071a0c8c1, type: 2}
-  - {fileID: 11400000, guid: aef10fe4eb0604f4e9ba0cc7919d0307, type: 2}
-  - {fileID: 11400000, guid: 3979408e3fa09b94890f6005f34d8d4a, type: 2}
-  - {fileID: 11400000, guid: 493066617b7c5724684c55e460720fd4, type: 2}
-  - {fileID: 11400000, guid: c2ef4ccfdd3b38041bb43ae61c89a3e2, type: 2}
-  - {fileID: 11400000, guid: 24632874de3c50a4c85a42a5c2c51037, type: 2}
   selectedProducts: []
   _spawnInterval: 2
   _spawnRange: 2.5
@@ -67159,11 +67187,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 570256303440294600, guid: 41871711d6c61e443a8ff272a600c23e,
-        type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 924188930265164607, guid: 41871711d6c61e443a8ff272a600c23e,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -67218,11 +67241,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Player2
-      objectReference: {fileID: 0}
-    - target: {fileID: 5458127896572525967, guid: 41871711d6c61e443a8ff272a600c23e,
-        type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -93061,8 +93079,9 @@ SceneRoots:
   - {fileID: 1205134913}
   - {fileID: 495600152}
   - {fileID: 2085925427}
-  - {fileID: 1015736323}
   - {fileID: 327195299}
+  - {fileID: 463474147}
+  - {fileID: 1015736323}
   - {fileID: 1786062892}
   - {fileID: 1783859730}
   - {fileID: 80874832}
