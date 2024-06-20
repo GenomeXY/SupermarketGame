@@ -10,9 +10,15 @@ public class UI : MonoBehaviour
     [SerializeField] private ScoreManager _scoreManager;
     [SerializeField] private FallingObjectsSpawner _fallingObjectsSpawner;
 
-    public RawImage rawImageProduct1;
-    public RawImage rawImageProduct2;
-    public RawImage rawImageProduct3;
+    [SerializeField] private Camera _camera; // Ссылка на камеру
+    [SerializeField] private GameObject _iconPrefab; // Префаб иконки для анимации
+
+    //public RawImage rawImageProduct1;
+    //public RawImage rawImageProduct2;
+    //public RawImage rawImageProduct3;
+    public Shaker iconShake1;
+    public Shaker iconShake2;
+    public Shaker iconShake3;
 
     public Image ImageProduct1;
     public Image ImageProduct2;
@@ -83,13 +89,19 @@ public class UI : MonoBehaviour
                 case 0:
                     Point1 = Mathf.Max(product.Amount, 0);
                     textproduct1.text = Point1.ToString();
+                    iconShake1.Shake();
+                    //StartCoroutine(AddScoreAnimation(product, ImageProduct1.transform.position));
                     break;
                 case 1:
                     Point2 = Mathf.Max(product.Amount, 0);
                     textproduct2.text = Point2.ToString();
+                    iconShake2.Shake();
+                    //StartCoroutine(AddScoreAnimation(product, ImageProduct2.transform.position));
                     break;
                 case 2:
                     Point3 = Mathf.Max(product.Amount, 0);
+                    iconShake3.Shake();
+                    //StartCoroutine(AddScoreAnimation(product, ImageProduct3.transform.position));
                     textproduct3.text = Point3.ToString();
                     break;
             }
@@ -118,5 +130,25 @@ public class UI : MonoBehaviour
     {
         yield return new WaitForSeconds(0.5f);
         _scoreManager.CheckIfAllProductsCollected();
+    }
+
+    private IEnumerator AddScoreAnimation(Products product, Vector3 targetPosition)
+    {
+        // Создаем иконку из префаба и устанавливаем правильный масштаб
+        GameObject icon = Instantiate(_iconPrefab, product.Prefab.transform.position, Quaternion.identity);
+
+        // Строим кривую Безье по 4 точкам
+        Vector3 a = icon.transform.position;
+        Vector3 b = a + Vector3.back * 6.5f + Vector3.down * 5f;
+        Vector3 screenPosition = new Vector3(targetPosition.x, targetPosition.y, -_camera.transform.position.z);
+        Vector3 d = _camera.ScreenToWorldPoint(screenPosition); // точка прилета (фиинальная точка)
+        Vector3 c = d + Vector3.back * 6f;
+
+        for (float t = 0; t < 1f; t += Time.deltaTime)
+        {
+            icon.transform.position = Bezier.GetPoint(a, b, c, d, t);
+            yield return null;
+        }
+        Destroy(icon.gameObject);
     }
 }

@@ -121,9 +121,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _fallSpeed: 1
-  _collectEffect: {fileID: 8550051998276758377, guid: 6f14ea3b4707b0f43a7d2a7dd397992e,
+  _collectEffectSelected: {fileID: 1386007376782350, guid: 550d39fbabf46ac4eaa69d48f7aee27b,
     type: 3}
-  _dieEffect: {fileID: 7328773732955115835, guid: 0c3ad027185f0de488b4b767cfb56aee,
+  _collectEffectOther: {fileID: 158680, guid: ad366d21f3f17cb4eab4855f345d371c, type: 3}
+  _dieEffect: {fileID: 7328773732955115835, guid: d97d811e231f25540af2eaaef1a3993d,
     type: 3}
   _product: {fileID: 11400000, guid: f471bb68b9d33b74b804f63cdd35d67c, type: 2}
   _productTypes: 4

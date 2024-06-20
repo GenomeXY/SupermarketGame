@@ -155,10 +155,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _fallSpeed: 1
-  _collectEffect: {fileID: 8550051998276758377, guid: 6f14ea3b4707b0f43a7d2a7dd397992e,
+  _collectEffectSelected: {fileID: 173990, guid: f755c012a9797c249bb813c17c5f6530,
     type: 3}
+  _collectEffectOther: {fileID: 158680, guid: ad366d21f3f17cb4eab4855f345d371c, type: 3}
   _dieEffect: {fileID: 7328773732955115835, guid: 0c3ad027185f0de488b4b767cfb56aee,
     type: 3}
+  _product: {fileID: 0}
+  _productTypes: 0
 --- !u!114 &-2721022132104787790
 MonoBehaviour:
   m_ObjectHideFlags: 0

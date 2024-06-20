@@ -49,9 +49,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _fallSpeed: 1
-  _collectEffect: {fileID: 8550051998276758377, guid: 6f14ea3b4707b0f43a7d2a7dd397992e,
+  _collectEffectSelected: {fileID: 169426, guid: 23bd5577fafcb2b4684359ab1942ca34,
     type: 3}
-  _dieEffect: {fileID: 7328773732955115835, guid: 0c3ad027185f0de488b4b767cfb56aee,
+  _collectEffectOther: {fileID: 158680, guid: ad366d21f3f17cb4eab4855f345d371c, type: 3}
+  _dieEffect: {fileID: 7328773732955115835, guid: d97d811e231f25540af2eaaef1a3993d,
     type: 3}
   _product: {fileID: 11400000, guid: 24632874de3c50a4c85a42a5c2c51037, type: 2}
   _productTypes: 11

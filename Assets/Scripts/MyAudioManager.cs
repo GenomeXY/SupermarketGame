@@ -15,6 +15,7 @@ public class MyAudioManager : MonoBehaviour
     public AudioSource StartSound;
     public AudioSource SmashSound;
     public AudioSource WinSound;
+    public AudioSource ErrorSound;
     private void Awake()
     {
         if (Instance == null)
@@ -25,5 +26,11 @@ public class MyAudioManager : MonoBehaviour
         {
             Destroy(gameObject);
         }
-    }    
+    }
+
+    public void PlaySoundWithRandomPitch(AudioSource audioSource, float minPitch = 0.8f, float maxPitch = 1.2f)
+    {
+        audioSource.pitch = Random.Range(minPitch, maxPitch);
+        audioSource.Play();
+    }
 }
