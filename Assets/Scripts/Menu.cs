@@ -15,6 +15,10 @@ public class Menu : MonoBehaviour
     public RawImage rawImageProduct2;
     public RawImage rawImageProduct3;
 
+    public Image ImageProduct1;
+    public Image ImageProduct2;
+    public Image ImageProduct3;
+
     public TextMeshProUGUI textproduct1;
     public TextMeshProUGUI textproduct2;
     public TextMeshProUGUI textproduct3;
@@ -46,9 +50,14 @@ public class Menu : MonoBehaviour
     }
     private void SetDataInMenu()
     {
-        rawImageProduct1.texture = _fallingObjectsSpawner.selectedProducts[0].Sprite.texture;
-        rawImageProduct2.texture = _fallingObjectsSpawner.selectedProducts[1].Sprite.texture;
-        rawImageProduct3.texture = _fallingObjectsSpawner.selectedProducts[2].Sprite.texture;
+        //rawImageProduct1.texture = _fallingObjectsSpawner.selectedProducts[0].Sprite.texture;
+        //rawImageProduct2.texture = _fallingObjectsSpawner.selectedProducts[1].Sprite.texture;
+        //rawImageProduct3.texture = _fallingObjectsSpawner.selectedProducts[2].Sprite.texture;
+
+        ImageProduct1.sprite = _fallingObjectsSpawner.selectedProducts[0].Sprite;
+        ImageProduct2.sprite = _fallingObjectsSpawner.selectedProducts[1].Sprite;
+        ImageProduct3.sprite = _fallingObjectsSpawner.selectedProducts[2].Sprite;
+
         textproduct1.text = "= " + _fallingObjectsSpawner.selectedProducts[0].Amount.ToString();
         textproduct2.text = "= " + _fallingObjectsSpawner.selectedProducts[1].Amount.ToString();
         textproduct3.text = "= " + _fallingObjectsSpawner.selectedProducts[2].Amount.ToString();

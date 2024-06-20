@@ -14,6 +14,14 @@ public class UI : MonoBehaviour
     public RawImage rawImageProduct2;
     public RawImage rawImageProduct3;
 
+    public Image ImageProduct1;
+    public Image ImageProduct2;
+    public Image ImageProduct3;
+
+    public Image CheckerProduct1;
+    public Image CheckerProduct2;
+    public Image CheckerProduct3;
+
     public int Point1 = 0;
     public int Point2 = 0;
     public int Point3 = 0;
@@ -44,9 +52,20 @@ public class UI : MonoBehaviour
         Point2 = _fallingObjectsSpawner.selectedProducts[1].Amount;
         Point3 = _fallingObjectsSpawner.selectedProducts[2].Amount;
 
-        rawImageProduct1.texture = _fallingObjectsSpawner.selectedProducts[0].Sprite.texture;
-        rawImageProduct2.texture = _fallingObjectsSpawner.selectedProducts[1].Sprite.texture;
-        rawImageProduct3.texture = _fallingObjectsSpawner.selectedProducts[2].Sprite.texture;
+        textproduct1.gameObject.SetActive(true);
+        textproduct2.gameObject.SetActive(true);
+        textproduct3.gameObject.SetActive(true);
+
+        CheckerProduct1.gameObject.SetActive(false);
+        CheckerProduct2.gameObject.SetActive(false);
+        CheckerProduct3.gameObject.SetActive(false);
+        //rawImageProduct1.texture = _fallingObjectsSpawner.selectedProducts[0].Sprite.texture;
+        //rawImageProduct2.texture = _fallingObjectsSpawner.selectedProducts[1].Sprite.texture;
+        //rawImageProduct3.texture = _fallingObjectsSpawner.selectedProducts[2].Sprite.texture;
+
+        ImageProduct1.sprite = _fallingObjectsSpawner.selectedProducts[0].Sprite;
+        ImageProduct2.sprite = _fallingObjectsSpawner.selectedProducts[1].Sprite;
+        ImageProduct3.sprite = _fallingObjectsSpawner.selectedProducts[2].Sprite;
 
         textproduct1.text = Point1.ToString();
         textproduct2.text = Point2.ToString();
@@ -75,8 +94,29 @@ public class UI : MonoBehaviour
                     break;
             }
 
+            if (Point1 == 0)
+            {
+                textproduct1.gameObject.SetActive(false);
+                CheckerProduct1.gameObject.SetActive(true);
+            }
+            if (Point2 == 0)
+            {
+                textproduct2.gameObject.SetActive(false);
+                CheckerProduct2.gameObject.SetActive(true);
+            }
+            if (Point3 == 0)
+            {
+                textproduct3.gameObject.SetActive(false);
+                CheckerProduct3.gameObject.SetActive(true);
+            }
             // Проверяем, все ли продукты собраны
-            _scoreManager.CheckIfAllProductsCollected();
+            StartCoroutine(CheckProducts());            
         }
+    }
+
+    private IEnumerator CheckProducts()
+    {
+        yield return new WaitForSeconds(0.5f);
+        _scoreManager.CheckIfAllProductsCollected();
     }
 }

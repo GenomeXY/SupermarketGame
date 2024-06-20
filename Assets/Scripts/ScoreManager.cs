@@ -49,12 +49,13 @@ public class ScoreManager : MonoBehaviour
     public void CheckIfAllProductsCollected()
     {
         if (_spawner.selectedProducts.All(product => product.Amount <= 0))
-        {
+        {            
             MyAudioManager.Instance.WinSound.Play();
             _gameManager.WinGameState();
         }
     }
 
+    
     public void Restart()
     {
         // Ничего не нужно сбрасывать в ScoreManager
