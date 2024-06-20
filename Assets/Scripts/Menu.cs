@@ -9,7 +9,8 @@ public class Menu : MonoBehaviour
     [SerializeField] private GameManager _gameManager;
     [SerializeField] private FallingObjectsSpawner _fallingObjectsSpawner;
     [SerializeField] private PulseButton _pulseButton;
-    [SerializeField] private ScaleUp _scaleUp;
+    [SerializeField] private UIFly _uiFlyDown;
+    [SerializeField] private UIFly _uiFlyLeft;
 
     public RawImage rawImageProduct1;
     public RawImage rawImageProduct2;
@@ -34,26 +35,17 @@ public class Menu : MonoBehaviour
         ObjectInterAction.OnStartTapped += StartGame;       // подписываем StartGame на событие при нажатии на кнопку старт
     }
 
-    private void OnEnable()
-    {
-        //_startButtonAnimator.SetTrigger("Shake");
-    }
     public void Restart()
     {
-        //_productListAnimator.SetTrigger("Exit");
+        
         _pulseButton.gameObject.SetActive(true);
-        //_startButtonAnimator.SetTrigger("Exit");
         SetDataInMenu();  // <-- Обновляем данные меню при рестарте
         MyAudioManager.Instance.BackMenuMusic.Play();
-        //_textInstructionsAnimator.enabled = false;          // отключаем анимацию текста с инструкцией
+       
         ObjectInterAction.OnStartTapped += StartGame;       // подписываем StartGame на событие при нажатии на кнопку старт
     }
     private void SetDataInMenu()
     {
-        //rawImageProduct1.texture = _fallingObjectsSpawner.selectedProducts[0].Sprite.texture;
-        //rawImageProduct2.texture = _fallingObjectsSpawner.selectedProducts[1].Sprite.texture;
-        //rawImageProduct3.texture = _fallingObjectsSpawner.selectedProducts[2].Sprite.texture;
-
         ImageProduct1.sprite = _fallingObjectsSpawner.selectedProducts[0].Sprite;
         ImageProduct2.sprite = _fallingObjectsSpawner.selectedProducts[1].Sprite;
         ImageProduct3.sprite = _fallingObjectsSpawner.selectedProducts[2].Sprite;
@@ -70,15 +62,15 @@ public class Menu : MonoBehaviour
 
     private IEnumerator StartGameProcess()
     {
-        //_startButtonAnimator.SetTrigger("Start");        // запускаем анимацию перелета и вращения кнопки
-        _pulseButton.gameObject.SetActive(false);        
-        //_productListAnimator.SetTrigger("Start");
-        //_textInstructionsAnimator.enabled = true;        // запускаем анимацию отслета текста инструкций
-        //StartCoroutine(SoundDelay());
+        _pulseButton.gameObject.SetActive(false);
+        _uiFlyDown.StartFlying();
+        _uiFlyLeft.StartFlying();
         yield return new WaitForSeconds(1f);                
         MyAudioManager.Instance.BackMenuMusic.Stop(); 
         MyAudioManager.Instance.BackGameMusic.Play();
-        _gameManager.CountdownGameState();        
+        _gameManager.CountdownGameState();
+        _uiFlyDown.StopFlying();
+        _uiFlyLeft.StopFlying();
     }
     private IEnumerator SoundDelay() 
     {

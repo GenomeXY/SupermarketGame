@@ -44,6 +44,7 @@ GameObject:
   - component: {fileID: 7013475819274425432}
   - component: {fileID: 2330278577651545064}
   - component: {fileID: 7490837435037041223}
+  - component: {fileID: -283630345466743221}
   m_Layer: 0
   m_Name: Cheese
   m_TagString: Untagged
@@ -128,6 +129,24 @@ MonoBehaviour:
     type: 3}
   _product: {fileID: 11400000, guid: f471bb68b9d33b74b804f63cdd35d67c, type: 2}
   _productTypes: 4
+--- !u!114 &-283630345466743221
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6138324215283334845}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5fea29bb7c508c244a1f805a5fd3fc4d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  outlineMode: 0
+  outlineColor: {r: 1, g: 1, b: 1, a: 1}
+  outlineWidth: 2
+  precomputeOutline: 0
+  bakeKeys: []
+  bakeValues: []
 --- !u!1 &6852278804726296277
 GameObject:
   m_ObjectHideFlags: 0

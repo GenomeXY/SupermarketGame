@@ -97,6 +97,7 @@ GameObject:
   - component: {fileID: 1892946750463576555}
   - component: {fileID: 9061144937846762854}
   - component: {fileID: 3175225687631408456}
+  - component: {fileID: -8797933375926611107}
   m_Layer: 0
   m_Name: Donut
   m_TagString: Untagged
@@ -181,6 +182,24 @@ MonoBehaviour:
     type: 3}
   _product: {fileID: 11400000, guid: 3979408e3fa09b94890f6005f34d8d4a, type: 2}
   _productTypes: 5
+--- !u!114 &-8797933375926611107
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4761825889674774569}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5fea29bb7c508c244a1f805a5fd3fc4d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  outlineMode: 0
+  outlineColor: {r: 1, g: 1, b: 1, a: 1}
+  outlineWidth: 2
+  precomputeOutline: 0
+  bakeKeys: []
+  bakeValues: []
 --- !u!1001 &4595551330293234641
 PrefabInstance:
   m_ObjectHideFlags: 0

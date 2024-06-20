@@ -97,6 +97,7 @@ GameObject:
   - component: {fileID: 5547493684241965717}
   - component: {fileID: 7530607784009545335}
   - component: {fileID: 6754208392111961623}
+  - component: {fileID: 6974953932115963812}
   m_Layer: 0
   m_Name: Eggs
   m_TagString: Untagged
@@ -181,6 +182,24 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &6974953932115963812
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9165157159847732985}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5fea29bb7c508c244a1f805a5fd3fc4d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  outlineMode: 0
+  outlineColor: {r: 1, g: 1, b: 1, a: 1}
+  outlineWidth: 2
+  precomputeOutline: 0
+  bakeKeys: []
+  bakeValues: []
 --- !u!1001 &7378474550988565707
 PrefabInstance:
   m_ObjectHideFlags: 0

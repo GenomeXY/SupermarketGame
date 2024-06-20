@@ -44,6 +44,7 @@ GameObject:
   - component: {fileID: 5375238211426052441}
   - component: {fileID: 657676415180395282}
   - component: {fileID: 43049793752509924}
+  - component: {fileID: -873461256631124942}
   m_Layer: 0
   m_Name: CornFlakes
   m_TagString: Untagged
@@ -128,6 +129,24 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &-873461256631124942
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8562460949739381906}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5fea29bb7c508c244a1f805a5fd3fc4d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  outlineMode: 0
+  outlineColor: {r: 1, g: 1, b: 1, a: 1}
+  outlineWidth: 2
+  precomputeOutline: 0
+  bakeKeys: []
+  bakeValues: []
 --- !u!1 &8643077556046893551
 GameObject:
   m_ObjectHideFlags: 0
