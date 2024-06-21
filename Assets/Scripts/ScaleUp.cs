@@ -8,14 +8,14 @@ public class ScaleUp : MonoBehaviour
 
     private Vector3 targetScale;
     private float timeElapsed = 0f;
-    private bool scaling = true;
+    private bool scaling = false;
 
     void Start()
     {
-        // Сохраните целевой масштаб (должен быть масштабом в 1, если объект изначально был в полном размере)
+        // Сохраняем целевой масштаб 
         targetScale = transform.localScale;
 
-        // Установите начальный масштаб в 0
+        // Установливаем начальный масштаб в 0
         transform.localScale = Vector3.zero;
     }
 
@@ -38,5 +38,11 @@ public class ScaleUp : MonoBehaviour
                 scaling = false;
             }
         }
+    }
+    public void StartScaling()
+    {
+        scaling = true;
+        timeElapsed = 0f;
+        transform.localScale = Vector3.zero;
     }
 }

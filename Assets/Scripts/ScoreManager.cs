@@ -10,7 +10,6 @@ public class ScoreManager : MonoBehaviour
     [SerializeField] private FallingObjectsSpawner _spawner;
     [SerializeField] private GameManager _gameManager;
 
-
     public static Action<Products> OnProductAmountChanged; 
     private void OnEnable()
     {
@@ -41,7 +40,6 @@ public class ScoreManager : MonoBehaviour
             {
                 // Удаляем продукт из списка падающих продуктов
                 //_spawner.fallingProducts.Remove(collectedProduct);
-                //Debug.Log($"Product {collectedProduct.ProductTypes} has been removed from falling products.");
             }
         }
     }
@@ -54,14 +52,4 @@ public class ScoreManager : MonoBehaviour
             _gameManager.WinGameState();
         }
     }
-
-    
-    public void Restart()
-    {
-        // Ничего не нужно сбрасывать в ScoreManager
-        // Просто перезапустим отслеживание сбора продуктов
-        //FallingObject.OnCollected += HandleProductCollected;
-    }
-
-
 }

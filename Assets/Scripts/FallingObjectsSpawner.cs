@@ -5,8 +5,7 @@ using System.Linq;
 using UnityEngine;
 public class FallingObjectsSpawner : MonoBehaviour
 {   
-    public List<Products> fallingProducts;                         // —писок падающих продуктов
-    //public List<Products> tempfallingProducts;                   // ¬ременный список падающих продуктов
+    public List<Products> fallingProducts;                         // —писок падающих продуктов    
     public List<Products> selectedProducts = new List<Products>(); // —писок продуктов дл€ сбора
 
     [SerializeField] private float _spawnInterval = 2.0f;          // »нтервал между спавнами предметов
@@ -16,11 +15,7 @@ public class FallingObjectsSpawner : MonoBehaviour
     [SerializeField] private float selectedDropChance = 5.0f;      // ¬еро€тность выпадени€ дл€ выбранных продуктов
 
     private float _timeSinceLastSpawn = 0.0f;
-
-    private void Start()
-    {
-        //tempfallingProducts = new List<Products>(fallingProducts);
-    }
+    
     private void Update()
     {
         _timeSinceLastSpawn += Time.deltaTime;
@@ -46,12 +41,12 @@ public class FallingObjectsSpawner : MonoBehaviour
 
     public void Select3RandomProducts()
     {
-        // ѕровер€ем, достаточно ли продуктов дл€ выбора 3 случайных
-        if (fallingProducts.Count < 3)
-        {
-            Debug.LogWarning("Ќедостаточно продуктов дл€ отображени€.");
-            return;
-        }
+        //// ѕровер€ем, достаточно ли продуктов дл€ выбора 3 случайных
+        //if (fallingProducts.Count < 3)
+        //{
+        //    Debug.LogWarning("Ќедостаточно продуктов дл€ отображени€.");
+        //    return;
+        //}
 
         // —оздаем временный список дл€ работы с случайным выбором
         List<Products> tempFallingProducts = new List<Products>(fallingProducts);
@@ -100,11 +95,6 @@ public class FallingObjectsSpawner : MonoBehaviour
         }
         return products[products.Count - 1]; // Ќа случай, если что-то пошло не так, возвращаем последний продукт
     }
-
-    //public void ClearLists()
-    //{
-    //    selectedProducts.Clear();
-    //}
 
     public void RestartSpawner()
     {

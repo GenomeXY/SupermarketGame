@@ -8,13 +8,13 @@ public class Menu : MonoBehaviour
 {
     [SerializeField] private GameManager _gameManager;
     [SerializeField] private FallingObjectsSpawner _fallingObjectsSpawner;
+
     [SerializeField] private PulseButton _pulseButton;
     [SerializeField] private UIFly _uiFlyDown;
     [SerializeField] private UIFly _uiFlyLeft;
-
-    public RawImage rawImageProduct1;
-    public RawImage rawImageProduct2;
-    public RawImage rawImageProduct3;
+    public ScaleUp scaleUpStartButton;
+    public ScaleUp scaleUpProductList;
+    public ScaleUp scaleUpText;
 
     public Image ImageProduct1;
     public Image ImageProduct2;
@@ -28,7 +28,10 @@ public class Menu : MonoBehaviour
     [SerializeField] private Animator _productListAnimator;
     [SerializeField] private Animator _textInstructionsAnimator;    
     void Start()
-    {        
+    {
+        scaleUpStartButton.StartScaling();
+        scaleUpProductList.StartScaling();
+        scaleUpText.StartScaling();
         SetDataInMenu();
         MyAudioManager.Instance.BackMenuMusic.Play();
         _textInstructionsAnimator.enabled = false;          // отключаем анимацию текста с инструкцией
@@ -36,8 +39,10 @@ public class Menu : MonoBehaviour
     }
 
     public void Restart()
-    {
-        
+    {                
+        scaleUpStartButton.StartScaling();
+        scaleUpProductList.StartScaling();
+        scaleUpText.StartScaling();
         _pulseButton.gameObject.SetActive(true);
         SetDataInMenu();  // <-- Обновляем данные меню при рестарте
         MyAudioManager.Instance.BackMenuMusic.Play();
@@ -71,10 +76,5 @@ public class Menu : MonoBehaviour
         _gameManager.CountdownGameState();
         _uiFlyDown.StopFlying();
         _uiFlyLeft.StopFlying();
-    }
-    private IEnumerator SoundDelay() 
-    {
-        yield return new WaitForSeconds(0.5f);
-        MyAudioManager.Instance.MenuFadeSound.Play();
     }
 }

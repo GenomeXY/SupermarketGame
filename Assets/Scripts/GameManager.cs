@@ -60,7 +60,6 @@ public class GameManager : MonoBehaviour
 
     public void RestartGame()
     {
-
         LootSpawner.GetComponent<FallingObjectsSpawner>().RestartSpawner();
         GameProcessDeactivate();
         _uiCanvas.SetActive(false);
@@ -71,12 +70,6 @@ public class GameManager : MonoBehaviour
         if (menu != null)
         {
             menu.Restart();
-        }
-
-        ScoreManager scoreManager = FindObjectOfType<ScoreManager>();
-        if (scoreManager != null)
-        {
-            scoreManager.Restart();
         }
     }
 }

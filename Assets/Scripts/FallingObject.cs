@@ -13,7 +13,6 @@ public class FallingObject : MonoBehaviour
 
     [SerializeField] private GameObject _collectEffectSelected;
     [SerializeField] private GameObject _collectEffectOther;
-
     [SerializeField] private GameObject _dieEffect;
 
     [SerializeField] private Product _product; // Ссылка на ScriptableObject
@@ -61,7 +60,6 @@ public class FallingObject : MonoBehaviour
             // Создаем эффект и привязываем его к объекту
             GameObject effectInstance = Instantiate(effectToInstantiate, transform.position, Quaternion.identity);
             effectInstance.transform.SetParent(other.transform);
-
             
             OnCollected?.Invoke(_productTypes);
 

@@ -18,10 +18,9 @@ public class PulseButton : MonoBehaviour
 
     void Update()
     {
-        // Рассчитайте новый масштаб
+        // рассчет нового масштаба
         float scale = 1.0f + Mathf.Sin(Time.time * pulseSpeed) * pulseAmount;
 
-        // Примените новый масштаб
         rectTransform.localScale = originalScale * scale;
     }
 }
